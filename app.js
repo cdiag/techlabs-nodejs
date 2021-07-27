@@ -2,11 +2,15 @@ const express = require('express');
 const { MongoClient, ObjectId } = require('mongodb')
 const bodyParser = require('body-parser');
 const app = express();
-const port = 3000;
 
-const url = 'mongodb://localhost:27017'
+const port = process.env.PORT || 3000;
+const host = process.env.HOST || "localhost";
+const dbName = process.env.DB_NAME || "exampleProject";
+const dbHost = process.env.DB_HOST || "localhost";
+const dbPort = process.env.DB_PORT || 27017;
+
+const url = `mongodb://${dbHost}:${dbPort}`
 const client = new MongoClient(url);
-const dbName = "exampleProject";
 let database;
 let collection;
 

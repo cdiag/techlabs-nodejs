@@ -1,0 +1,14 @@
+[
+  {
+    "author": "Stefan Meier",
+    "title": "Grundlagen: Docker"
+  },
+  {
+    "author": "Sebastian Lammering",
+    "title": "Grundlagen: REST und Docker in der Theorie"
+  },
+  {
+    "author": "Kay Laesecke",
+    "title": "Grundlagen: REST mit NodeJS"
+  }
+]

@@ -1,0 +1,36 @@
+version: "3.7"
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: techlabs_backend:latest
+    container_name: techlabsBackend
+    ports:
+    - 3000:3000
+    depends_on:
+      - mongo
+    environment:
+      DB_HOST: mongo
+      DB_PORT: 27017
+
+  frontend:
+    image: techlabs_frontend:latest
+    container_name: techlabsFrontend
+    ports:
+    - 4200:4200
+    depends_on:
+      - backend
+
+  mongoimport:
+    image: mongo:latest
+    container_name: mongo_import
+    depends_on:
+      - mongo
+    volumes:
+      - ./data:/data/init/
+    command: mongoimport --host mongo --port 27017 --db exampleProject --collection books --file /data/init/inital_import.json --jsonArray
+
+  mongo:
+    image: mongo:latest
+    container_name: mongoDB
